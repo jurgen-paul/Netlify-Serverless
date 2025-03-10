@@ -1,0 +1,27 @@
+# netlify.yml
+
+# Build settings
+build:
+  publish: "public"
+  command: "npm run build"
+  functions: "functions"
+
+# Serverless functions configuration
+functions:
+  directory: "functions"
+
+# Deploy contexts for different environments
+deploy:
+  production:
+    functions:
+      directory: "functions"
+
+# Build plugins if needed
+plugins:
+  - package: "@netlify/plugin-functions-core"
+
+# Redirects and headers if needed
+redirects:
+  - from: "/api/*"
+    to: "/.netlify/functions/:splat"
+    status: 200
